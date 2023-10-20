@@ -1,0 +1,66 @@
+/* Base */
+@import 'tailwindcss/base';
+
+/* Component */
+@import 'tailwindcss/components';
+
+/* Utilities */
+@import "tailwindcss/utilities";
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;700&display=swap');
+@import '../../node_modules/simple-lightbox/dist/simpleLightbox.min.css';
+@import '../../node_modules/vanilla-cookieconsent/dist/cookieconsent.css';
+
+input[type="checkbox"] {
+    @apply appearance-none w-0 h-0;
+}
+
+input[type="checkbox"] + label {
+    @apply text-[0.8125rem] -tracking-[0.00813rem] relative pl-[1.75rem] before:block before:absolute before:left-0 before:top-0 before:w-[1.125rem] before:h-[1.125rem] before:bg-gray2 before:border before:border-check;
+}
+
+input[type="checkbox"]:checked + label {
+    @apply before:border-checked after:block after:absolute after:left-[0.175rem] after:top-[0.25rem] after:w-[13px] after:h-[10px] after:bg-[url('../img/check.svg')];
+}
+
+.check-group .pristine-error {
+    @apply pl-[1.75rem];
+}
+
+.has-danger input:not(input[type="checkbox"]) {
+    @apply border-red;
+}
+
+
+:root{
+    --cc-font-family: 'Manrope', sans-serif;
+    --cc-font-size: 1rem;
+    --cc-bg: #fff;
+    --cc-z-index: 2147483647;
+    --cc-text: #222222;
+    --cc-border-radius: 0;
+    --cc-btn-primary-bg: #50331F;
+    --cc-btn-primary-text: #ffffff;
+    --cc-btn-primary-hover-bg: #FFDB00;
+    --cc-btn-primary-hover-text: #222222;
+    --cc-btn-secondary-bg: #f2f0ea;
+    --cc-btn-secondary-text: #222222;
+    --cc-btn-secondary-hover-bg: #edeae2;
+    --cc-btn-secondary-hover-text: #222222;
+    --cc-btn-border-radius: 0;
+    --cc-toggle-bg-off: #897364;
+    --cc-toggle-bg-on: #50331F;
+    --cc-toggle-bg-readonly: #cbbeb5;
+    --cc-toggle-knob-bg: #fff;
+    --cc-toggle-knob-icon-color: #ecf2fa;
+    --cc-block-text: #222222;
+    --cc-cookie-category-block-bg: #f2f0ea;
+    --cc-cookie-category-block-bg-hover: #edeae2;
+    --cc-section-border: #f1f3f5;
+    --cc-cookie-table-border: #e9edf2;
+    --cc-overlay-bg: #222222;
+    --cc-overlay-opacity: .85;
+    --cc-consent-modal-box-shadow: 0 0.625rem 1.875rem rgba(2, 2, 3, 0.28);
+    --cc-webkit-scrollbar-bg: #edeae2;
+    --cc-webkit-scrollbar-bg-hover: #e2dfd5;
+}
