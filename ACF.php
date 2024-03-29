@@ -4,7 +4,13 @@ $section_5_title = get_field('section_5_title');
 if ($section_5_title) : ?>
     <h2 class="text-titleH2Mob lg:text-titleH2 font-bold text-white mb-[1.875rem]"><?php echo $section_5_title; ?></h2>
 <?php endif; ?>
+<!-- Text без лиишнего <p> -->
+<?php
+$block_1_content = get_field('block_1_content', pll_current_language(), false);
 
+if ($block_1_content) : ?>
+    <p class="descr"><?php echo $block_1_content; ?></p>
+<?php endif; ?>
 <!-- Btn -->
 <?php
 $link = get_field('hp-section-3-btn');
@@ -27,13 +33,13 @@ endif;
 <!-- v2 -->
 <?php
 $image = get_field('logo_nav_fixed', pll_current_language());
-if (!empty($image)) :
-    $url = $image['url'];
-?>
+if (! empty($image)) :
+    $url = $image[ 'url' ];
+    ?>
     <a href="/" class="logo-header-fixed">
-        <img src="<?php echo $url; ?>" alt="<?php echo $image['alt']; ?>"/>
+        <img src="<?php echo $url; ?>" alt="<?php echo $image[ 'alt' ]; ?>" />
     </a>
-<?php
+    <?php
 endif;
 ?>
 
@@ -108,3 +114,87 @@ if ($footer_title) : ?>
         </ul>
     <?php endif; ?>
 </div>
+
+<!-- Повторяемое поле, простой вывод списка -->
+<?php if (have_rows('list_1')) : ?>
+    <ul class="data">
+        <?php while ( have_rows('list_1') ) :
+            the_row(); ?>
+            <li><?php the_sub_field('list_item'); ?></li>
+        <?php endwhile; ?>
+    </ul>
+<?php endif; ?>
+
+
+
+<?php
+$link = get_field('hero_btn');
+if ($link) :
+    $link_url = esc_url($link[ 'url' ]);
+    $hero_btn_desc = esc_html($link[ 'hero_btn_desc' ]);
+    $link_target = $link[ 'target' ] ? esc_attr($link[ 'target' ]) : '_self';
+    ?>
+    <a class="pr-[25px] h-[101px] text-[#A22910] uppercase absolute section-title leading-none uppercase text-[29px] bg-white justify-end border-[2px] border-[#E7DDD2] rounded-r-[50px] absolute w-[678px] lg:bottom-[30px] xl:bottom-[50px] xxl:bottom-[75px] flex flex-row items-center"
+        href="<?php echo $link_url; ?>" target="<?php echo $link_target; ?>"><?php echo $hero_btn_desc; ?>
+        <img class="max-w-[55px] ms-[30px]" src="<?php echo esc_url(get_template_directory_uri()); ?>/images/hero-button-icon.svg" </a>
+    <?php endif; ?>
+
+
+
+
+    <?php
+    $link = get_field('hero_btn');
+    if ($link) :
+        $link_url = esc_url($link[ 'url' ]);
+        $link_title = esc_html($link[ 'title' ]);
+        $link_target = $link[ 'target' ] ? esc_attr($link[ 'target' ]) : '_self';
+        ?>
+        <a class="btn-yellow opacity-0 init-animate-2" href="<?php echo $link_url; ?>" target="<?php echo $link_target; ?>"><?php echo $link_title; ?></a>
+    <?php endif; ?>
+
+
+    <!-- bg-image -->
+    <?php
+    $content_img_3 = get_field('content_img_3');
+    $bg_image_url = $content_img_3 ? esc_url($content_img_3[ 'url' ]) : ''; // Если поле ACF пустое, то изображение не будет установлено
+    ?>
+    <div class="min-h-[300px] mx-auto bg-center bg-cover rounded-[35px] w-full lg:rounded-[70px] lg:mt-[30px] max-w-[1080px] h-auto md:h-[355px] lg:h-[455px] xl:h-[555px]"
+        style="background-image: url('<?php echo $bg_image_url; ?>');">
+    </div>
+
+
+    <!-- <br> -->
+    <?php
+    $page_dessert_singl_content = get_field('page_dessert_singl_content');
+    if ($page_dessert_singl_content) {
+        echo nl2br($page_dessert_singl_content);
+    }
+    ?>
+
+
+
+    <!-- contacts -->
+    <!-- phone -->
+    <li class="text-contactInfo font-medium text-colorDark">mob.:
+        <?php
+        $footer_info_contacts_phone_number_mob = get_field('footer_info_contacts_phone_number_mob', pll_current_language());
+        if ($footer_info_contacts_phone_number_mob) :
+            $footer_info_contacts_phone_number_mob_link = str_replace(' ', '', $footer_info_contacts_phone_number_mob);
+            ?>
+            <a class="text-contactInfo font-medium text-colorDark" href="tel:<?php echo esc_attr($footer_info_contacts_phone_number_mob_link); ?>">
+                <?php echo esc_html($footer_info_contacts_phone_number_mob); ?>
+            </a>
+        <?php endif; ?>
+    </li>
+    <!-- email -->
+    <li class="text-contactInfo font-medium text-colorDark">e-mail:
+        <?php
+        $footer_info_contacts_email = get_field('footer_info_contacts_email', pll_current_language());
+        if ($footer_info_contacts_email) :
+            $footer_info_contacts_email_link = str_replace(' ', '', $footer_info_contacts_email);
+            ?>
+            <a class="text-contactInfo font-medium text-colorDark" href="mailto:<?php echo esc_attr($footer_info_contacts_email_link); ?>">
+                <?php echo esc_html($footer_info_contacts_email); ?>
+            </a>
+        <?php endif; ?>
+    </li>
