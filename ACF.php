@@ -1,3 +1,7 @@
+<img src="<?php echo get_template_directory_uri(); ?>/path/to/your/image.jpg" alt="Описание">
+
+
+
 <!-- Text -->
 <?php
 $section_5_title = get_field('section_5_title');
@@ -15,31 +19,31 @@ if ($block_1_content) : ?>
 <?php
 $link = get_field('hp-section-3-btn');
 if ($link) :
-    $link_url = esc_url($link[ 'url' ]);
-    $link_title = esc_html($link[ 'title' ]);
-    $link_target = $link[ 'target' ] ? esc_attr($link[ 'target' ]) : '_self';
-    ?>
+    $link_url = esc_url($link['url']);
+    $link_title = esc_html($link['title']);
+    $link_target = $link['target'] ? esc_attr($link['target']) : '_self';
+?>
     <a class="btn-yellow opacity-0 init-animate-2" href="<?php echo $link_url; ?>" target="<?php echo $link_target; ?>"><?php echo $link_title; ?></a>
 <?php endif; ?>
 
 <!-- img -->
 <?php
 $image = get_field('investment-section-3-image');
-if (! empty($image)) :
-    $url = $image[ 'url' ];
-    echo '<img src="' . $url . '" alt="' . $image[ 'alt' ] . '" class="w-full h-auto  " />';
+if (!empty($image)) :
+    $url = $image['url'];
+    echo '<img src="' . $url . '" alt="' . $image['alt'] . '" class="w-full h-auto  " />';
 endif;
 ?>
 <!-- v2 -->
 <?php
 $image = get_field('logo_nav_fixed', pll_current_language());
-if (! empty($image)) :
-    $url = $image[ 'url' ];
-    ?>
+if (!empty($image)) :
+    $url = $image['url'];
+?>
     <a href="/" class="logo-header-fixed">
-        <img src="<?php echo $url; ?>" alt="<?php echo $image[ 'alt' ]; ?>" />
+        <img src="<?php echo $url; ?>" alt="<?php echo $image['alt']; ?>" />
     </a>
-    <?php
+<?php
 endif;
 ?>
 
@@ -47,23 +51,23 @@ endif;
 <?php if (have_rows('hero-slider-homepage')) : ?>
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
-            <?php while ( have_rows('hero-slider-homepage') ) :
+            <?php while (have_rows('hero-slider-homepage')) :
                 the_row();
                 $image = get_sub_field('slide_foto');
                 $title = get_sub_field('slide_foto_title');
                 $description = get_sub_field('slide_foto_description');
                 $title_color = get_sub_field('slide_foto_title_color');
 
-                ?>
+            ?>
                 <div class="swiper-slide relative">
-                    <?php if (! empty($image)) : ?>
-                        <img src="<?php echo esc_url($image[ 'url' ]); ?>" alt="<?php echo esc_attr($image[ 'alt' ]); ?>" />
+                    <?php if (!empty($image)) : ?>
+                        <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
                     <?php endif; ?>
                     <div class="absolute top-1/2 -translate-y-1/2 left-1/4 -translate-x-1/4 bg-bgTextSlider shadow-lg p-5 rounded-lg w-[40rem]">
-                        <?php if (! empty($title)) : ?>
+                        <?php if (!empty($title)) : ?>
                             <div class='text-[1.5rem] font-bold mb-5' style="color: <?php echo esc_attr($title_color); ?>;"><?php echo esc_html($title); ?></div>
                         <?php endif; ?>
-                        <?php if (! empty($description)) : ?>
+                        <?php if (!empty($description)) : ?>
                             <div class=''><?php echo esc_html($description); ?></div>
                         <?php endif; ?>
                     </div>
@@ -92,18 +96,18 @@ if ($footer_title) : ?>
         <?php
         ?>
         <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-x-[1.875rem] gap-y-[3.875rem] mb-[4.683rem]">
-            <?php while ( have_rows('section_5_list') ) :
+            <?php while (have_rows('section_5_list')) :
                 the_row();
                 $icon = get_sub_field('icon');
                 $description = get_sub_field('icon_description_hover');
 
-                ?>
+            ?>
                 <li class="flex flex-col justify-start items-center">
                     <?php if ($icon) : ?>
-                        <img src="<?php echo esc_url($icon[ 'url' ]); ?>" alt="<?php echo esc_attr($icon[ 'alt' ]); ?>" class="w-[5.626rem] h-[5.626rem] mb-[1.688rem]" />
+                        <img src="<?php echo esc_url($icon['url']); ?>" alt="<?php echo esc_attr($icon['alt']); ?>" class="w-[5.626rem] h-[5.626rem] mb-[1.688rem]" />
                     <?php endif; ?>
                     <div>
-                        <?php if (! empty($description)) : ?>
+                        <?php if (!empty($description)) : ?>
                             <p class="text-center text-white text-textCardsItem font-medium">
                                 <?php echo $description; ?>
                             </p>
@@ -118,7 +122,7 @@ if ($footer_title) : ?>
 <!-- Повторяемое поле, простой вывод списка -->
 <?php if (have_rows('list_1')) : ?>
     <ul class="data">
-        <?php while ( have_rows('list_1') ) :
+        <?php while (have_rows('list_1')) :
             the_row(); ?>
             <li><?php the_sub_field('list_item'); ?></li>
         <?php endwhile; ?>
@@ -130,12 +134,11 @@ if ($footer_title) : ?>
 <?php
 $link = get_field('hero_btn');
 if ($link) :
-    $link_url = esc_url($link[ 'url' ]);
-    $hero_btn_desc = esc_html($link[ 'hero_btn_desc' ]);
-    $link_target = $link[ 'target' ] ? esc_attr($link[ 'target' ]) : '_self';
-    ?>
-    <a class="pr-[25px] h-[101px] text-[#A22910] uppercase absolute section-title leading-none uppercase text-[29px] bg-white justify-end border-[2px] border-[#E7DDD2] rounded-r-[50px] absolute w-[678px] lg:bottom-[30px] xl:bottom-[50px] xxl:bottom-[75px] flex flex-row items-center"
-        href="<?php echo $link_url; ?>" target="<?php echo $link_target; ?>"><?php echo $hero_btn_desc; ?>
+    $link_url = esc_url($link['url']);
+    $hero_btn_desc = esc_html($link['hero_btn_desc']);
+    $link_target = $link['target'] ? esc_attr($link['target']) : '_self';
+?>
+    <a class="pr-[25px] h-[101px] text-[#A22910] uppercase absolute section-title leading-none uppercase text-[29px] bg-white justify-end border-[2px] border-[#E7DDD2] rounded-r-[50px] absolute w-[678px] lg:bottom-[30px] xl:bottom-[50px] xxl:bottom-[75px] flex flex-row items-center" href="<?php echo $link_url; ?>" target="<?php echo $link_target; ?>"><?php echo $hero_btn_desc; ?>
         <img class="max-w-[55px] ms-[30px]" src="<?php echo esc_url(get_template_directory_uri()); ?>/images/hero-button-icon.svg" </a>
     <?php endif; ?>
 
@@ -145,10 +148,10 @@ if ($link) :
     <?php
     $link = get_field('hero_btn');
     if ($link) :
-        $link_url = esc_url($link[ 'url' ]);
-        $link_title = esc_html($link[ 'title' ]);
-        $link_target = $link[ 'target' ] ? esc_attr($link[ 'target' ]) : '_self';
-        ?>
+        $link_url = esc_url($link['url']);
+        $link_title = esc_html($link['title']);
+        $link_target = $link['target'] ? esc_attr($link['target']) : '_self';
+    ?>
         <a class="btn-yellow opacity-0 init-animate-2" href="<?php echo $link_url; ?>" target="<?php echo $link_target; ?>"><?php echo $link_title; ?></a>
     <?php endif; ?>
 
@@ -156,10 +159,9 @@ if ($link) :
     <!-- bg-image -->
     <?php
     $content_img_3 = get_field('content_img_3');
-    $bg_image_url = $content_img_3 ? esc_url($content_img_3[ 'url' ]) : ''; // Если поле ACF пустое, то изображение не будет установлено
+    $bg_image_url = $content_img_3 ? esc_url($content_img_3['url']) : ''; // Если поле ACF пустое, то изображение не будет установлено
     ?>
-    <div class="min-h-[300px] mx-auto bg-center bg-cover rounded-[35px] w-full lg:rounded-[70px] lg:mt-[30px] max-w-[1080px] h-auto md:h-[355px] lg:h-[455px] xl:h-[555px]"
-        style="background-image: url('<?php echo $bg_image_url; ?>');">
+    <div class="min-h-[300px] mx-auto bg-center bg-cover rounded-[35px] w-full lg:rounded-[70px] lg:mt-[30px] max-w-[1080px] h-auto md:h-[355px] lg:h-[455px] xl:h-[555px]" style="background-image: url('<?php echo $bg_image_url; ?>');">
     </div>
 
 
@@ -180,7 +182,7 @@ if ($link) :
         $footer_info_contacts_phone_number_mob = get_field('footer_info_contacts_phone_number_mob', pll_current_language());
         if ($footer_info_contacts_phone_number_mob) :
             $footer_info_contacts_phone_number_mob_link = str_replace(' ', '', $footer_info_contacts_phone_number_mob);
-            ?>
+        ?>
             <a class="text-contactInfo font-medium text-colorDark" href="tel:<?php echo esc_attr($footer_info_contacts_phone_number_mob_link); ?>">
                 <?php echo esc_html($footer_info_contacts_phone_number_mob); ?>
             </a>
@@ -192,7 +194,7 @@ if ($link) :
         $footer_info_contacts_email = get_field('footer_info_contacts_email', pll_current_language());
         if ($footer_info_contacts_email) :
             $footer_info_contacts_email_link = str_replace(' ', '', $footer_info_contacts_email);
-            ?>
+        ?>
             <a class="text-contactInfo font-medium text-colorDark" href="mailto:<?php echo esc_attr($footer_info_contacts_email_link); ?>">
                 <?php echo esc_html($footer_info_contacts_email); ?>
             </a>
